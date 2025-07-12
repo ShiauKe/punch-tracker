@@ -1,10 +1,6 @@
-console.log('This is a placeholder for the script.js file.');
-
-
 main()
 
-
-
+// main
 async function main() {
   try {
     const res = await fetecResultFormatted();
@@ -13,13 +9,11 @@ async function main() {
       const allDate = new Set(res.map(item => item.date))
       let gridApi;
       data = res[0]
-      const rowData = getRowData(data)
-      
+      const rowData = getRowData(data) 
       const gridOptions = getGridOptions(rowData);
       const myGridElement = document.querySelector('#myGrid');
       gridApi = agGrid.createGrid(myGridElement, gridOptions);
       renderDateButtons(allDate,res,gridApi);
-
     } else {
       console.error('No data found or error occurred.');
     }     
@@ -27,7 +21,6 @@ async function main() {
     console.error('Error in main function:', error);
   }
 }
-
 async function fetecResultFormatted() {
   try {
     const response = await fetch('/excels/result_formatted.json');
@@ -43,7 +36,6 @@ async function fetecResultFormatted() {
     return null;
   }
 }
-
 function getRowData(data){
   console.log('getRowData:', data)
  return data.data.map(item => {
@@ -68,7 +60,6 @@ function getRowData(data){
       }
       ) 
 }
-
 function renderDateButtons(allDate,res,gridApi){
   const dateContainer = document.getElementById('dateSelector')
   allDate.forEach(date => {
@@ -91,7 +82,6 @@ function renderDateButtons(allDate,res,gridApi){
           dateContainer.appendChild(button) 
   })
 }
-
 function getGridOptions(rowData){
   return {
         rowData: rowData,

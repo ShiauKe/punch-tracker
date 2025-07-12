@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/ag-grid-community/dist/ag-grid-community.min.js"></script>
+  <style>
+    .fixedWidth {
+      width: 1200px;
+      border:solid 1px black;
+    }
+    .dateSelector {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .dateButton{
+      color:black;
+    }
+    .clicked {
+      background-color: rgb(0, 76, 255);
+      color: white;
+      font-weight: bold;
+    }
+
+    .ag-theme-alpine {
+      height: 100%;
+      width: 100%;
+    }
+
+    .flex-r-cen-cen{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+
+  </style>
+</head>
+<body>
+  <div id="dateSelector" class="fixedWidth"></div>
+  <div id="myGrid" class = "fixedWidth" style="height: 1000px"></div>
+<script src = "script.js"></script>
+</body>
+</html>

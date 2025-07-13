@@ -1,0 +1,109 @@
+{
+  "allData": [
+    {
+      "date": "2025-03-01",
+      "data": [
+        {
+          "punchDate": "2025-03-01",
+          "name": "員工a",
+          "originalPunches": [
+            {
+              "time": "07:33:42",
+              "punchStatus": "mi"
+            },
+            {
+              "time": "07:38:01",
+              "punchStatus": "mi"
+            },
+            {
+              "time": "12:02:48",
+              "punchStatus": "mo"
+            }
+          ],
+          "existAbnormalPunchStatus": "No",
+          "inferRecords": [
+            {
+              "time": "07:33:42",
+              "punchStatus": "mi",
+              "inferPunchStatus": "mi",
+              "isFirst": "Yes"
+            },
+            {
+              "time": "07:38:01",
+              "punchStatus": "mi",
+              "inferPunchStatus": "mi"
+            },
+            {
+              "time": "12:02:48",
+              "punchStatus": "mo",
+              "inferPunchStatus": "mo",
+              "isFirst": "Yes"
+            },
+            {
+              "time": null,
+              "punchStatus": null,
+              "inferPunchStatus": "ai",
+              "isFirst": "Yes",
+              "noPunchRegister": "Yes"
+            },
+            {
+              "time": null,
+              "punchStatus": null,
+              "inferPunchStatus": "ao",
+              "isFirst": "Yes",
+              "noPunchRegister": "Yes"
+            }
+          ],
+          "final_punches": [
+            {
+              "time": "07:33:42",
+              "punchStatus": "mi",
+              "inferPunchStatus": "mi",
+              "isFirst": "Yes",
+              "overTimeObj": {
+                "overTime": "no",
+                "overTimeDuration": 0,
+                "overTimeAutoFill": 0
+              }
+            },
+            {
+              "time": "12:02:48",
+              "punchStatus": "mo",
+              "inferPunchStatus": "mo",
+              "isFirst": "Yes",
+              "overTimeObj": {
+                "overTime": "no",
+                "overTimeDuration": 0,
+                "overTimeAutoFill": 0
+              }
+            },
+            {
+              "time": null,
+              "punchStatus": null,
+              "inferPunchStatus": "ai",
+              "isFirst": "Yes",
+              "noPunchRegister": "Yes",
+              "overTimeObj": {
+                "overTime": "no",
+                "overTimeDuration": 2,
+                "overTimeAutoFill": 2
+              }
+            },
+            {
+              "time": null,
+              "punchStatus": null,
+              "inferPunchStatus": "ao",
+              "isFirst": "Yes",
+              "noPunchRegister": "Yes",
+              "overTimeObj": {
+                "overTime": "no",
+                "overTimeDuration": 2,
+                "overTimeAutoFill": 2
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -4,8 +4,7 @@ const port = 3000;
 const path = require('path');
 const fs = require('fs');
 
-app.use(express.static('public'));
-
+app.use(express.static('../public'));
 
 app.get('/excels/:file', (req, res) => {
     // const fixedFileName = 'result_formatted.json';
@@ -21,13 +20,6 @@ app.get('/excels/:file', (req, res) => {
     }
 });
 
-
-app.get('/', (req, res) => {    
-    res.send('Hello, world!');
-});
-
-
-
-app.listen(port, async () => {
+app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });

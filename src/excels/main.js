@@ -2,7 +2,7 @@ const fs = require('fs')
 const path = require('path')
 const excelParser = require('../excelParser')
 const punchRule = require('./rules/punchRule')
-const { classifyByRule ,getTimeDifference,onLeaveRules,overTimeRules,getOnLeaveValue,getOverTimeValue} = require('./punchClassifier')
+const { classifyByRule ,getTimeDifference,onLeaveRules,overTimeRules,getOnLeaveValue,getOverTimeValue,specialEmployees} = require('./punchClassifier')
 const { inferSequence_v3} = require('./punchInfer');
 const abnormalSet = new Set([
     'u,mo,mo,u',
@@ -12,19 +12,10 @@ const _ = require('lodash')
 // 引入需要的套件
 
 console.log('--------------------------------------')
-// console.log(__dirname)
-// 讀取raw資料夾中的所有檔案
 const files = fs.readdirSync(path.join(__dirname,'raw'))
-// console.log('files:',files)
-// 讀取指定的 Excel 檔案
-// 定義並初始化final_results物件來儲存所有資料
 let final_results = {allData:[]}
 files.forEach(file=>{
-    // 檢查檔案是否為 Excel 檔案
-    // 如果是exel檔案就進行處理, 將結果儲存到final_results中
-    // 如果不是exel檔案就跳過
     if(file.endsWith('.xls') || file.endsWith('.xlsx')){
-        // console.log('Processing file:',file)
         processFile(file,final_results)
     }else{
         console.log('Skipping non-Excel file:',file)
@@ -32,17 +23,10 @@ files.forEach(file=>{
 })
 console.log('--------------------------------------')
 console.log('Final results:',final_results.allData.length,'records')
-// 將結果寫入 JSON 檔案
-// 使用 JSON.stringify 將 final_results 轉換為 JSON 字串
-// 並使用 fs.writeFileSync 將其寫入檔案
-// 格式化輸出，使用2個空格縮排
-// 這樣可以讓 JSON 檔案更易讀
-// console.log(40,final_results.allData[0].data[0].final_punches)
 fs.writeFileSync(`result_formatted.json`,JSON.stringify(final_results,null,2))
 console.log('All records formatted and saved to JSON file.')
 
 function processFile(filename,final_results) {
-    // let filename = 'MSG20250312.xls'
     const filePath = path.join(__dirname,'raw',filename)
     const parser = new excelParser(filePath)
     
@@ -60,10 +44,7 @@ function processFile(filename,final_results) {
     
         people = judgeLeaveStatus(people)
         people = judgeOverTimeStatus(people)
-        // if(people.name==="蔡麗梅"){console.log(people)}
-        // console.log(people)
     })
-    // console.log('all_records index 0:',all_records[0])
     final_results.allData = [
         ...final_results.allData,
         {
@@ -71,8 +52,6 @@ function processFile(filename,final_results) {
             data:all_records
         }
     ]
-
-    // console.log(final_results.allData[0].data[0].final_punches)   
 }
 
 function sortByTime(originalPunches) {
@@ -275,7 +254,7 @@ function judgeOverTimeStatus(people){
     const ao = people.final_punches.find(p=>p.inferPunchStatus==='ao')
     if(ao?.time>punchRule.ao.center){
         const overMinutes = getTimeDifference(ao.time,punchRule.ao.center)/60
-        const overTimeRegulation = getOverTimeValue(people.name,overMinutes,overTimeRules)
+        const overTimeRegulation = getOverTimeValue(people.name,overMinutes,overTimeRules,specialEmployees)
         people.overTimeObj.overTimeAutoFill += overTimeRegulation
     }
 

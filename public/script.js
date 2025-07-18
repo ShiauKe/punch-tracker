@@ -24,7 +24,7 @@ async function main() {
 async function fetecResultFormatted() {
   try {
     // const response = await fetch('/excels/result_formatted.json');
-    const response = await fetch('../test/result_formatted.json');
+    const response = await fetch('../excels/result_formatted.json');
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }

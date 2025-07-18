@@ -9,7 +9,6 @@
   </script>
 </head>
 <body>
-  <h2>Mermaid 流程圖示範</h2>
   <div class="mermaid">
     graph TD
       開始處理當月打卡紀錄-->上傳excel檔案;
@@ -17,6 +16,13 @@
       上傳excel檔案-->執行main.js;
       執行main.js-->打開瀏覽器;
       執行server.js-->打開瀏覽器;
+      打開瀏覽器-->檢查打卡資料;
+      檢查打卡資料-->|沒問題|下載summaryExcel;
+      檢查打卡資料-->|有問題|修改對應的excel資料;
+      修改對應的excel資料-->執行main.js;
+      
+      
+      
   </div>
 </body>
 </html>

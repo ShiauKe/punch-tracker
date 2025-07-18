@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>Mermaid Flowchart Demo</title>
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+</head>
+<body>
+  <h2>Mermaid 流程圖示範</h2>
+  <div class="mermaid">
+    graph TD
+      開始處理當月打卡紀錄-->上傳excel檔案;
+      開始處理當月打卡紀錄-->執行server.js;
+      上傳excel檔案-->執行main.js;
+      執行main.js-->打開瀏覽器;
+      執行server.js-->打開瀏覽器;
+  </div>
+</body>
+</html>
